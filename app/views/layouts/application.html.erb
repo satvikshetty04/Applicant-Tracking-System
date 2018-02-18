@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ApplicationTrackingSystem</title>
+    <title>Application Tracking System</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,6 +12,8 @@
 
   <body>
   <%= render 'layouts/header' %>
+  <div class="container" style="padding-top: 30px">
     <%= yield %>
+  </div>
   </body>
 </html>
