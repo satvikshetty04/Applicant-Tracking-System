@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'application_tracking_system/home'
-
   get 'application_tracking_system/help'
+
+  resources :application_tracking_system
 
   resources :jobs
   resources :companies
