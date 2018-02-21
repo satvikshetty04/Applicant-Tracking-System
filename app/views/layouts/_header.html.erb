@@ -5,7 +5,14 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",   application_tracking_system_home_path %></li>
         <li><%= link_to "Help",   application_tracking_system_help_path %></li>
-        <li><%= link_to "Log in", new_user_session_path %></li>
+
+        <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.email %></strong>.
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <li><%= link_to "Log in", new_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
