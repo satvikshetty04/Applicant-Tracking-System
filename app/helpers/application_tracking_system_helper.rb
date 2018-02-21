@@ -1,0 +1,2 @@
+module ApplicationTrackingSystemHelper
+end
