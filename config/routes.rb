@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   get 'application_tracking_system/home'
   get 'application_tracking_system/help'
+  get 'application_tracking_system/menu'
 
   resources :application_tracking_system
 

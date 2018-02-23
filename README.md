@@ -1,9 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Admin details:
 
-Things you may want to cover:
+**Email**: admin@ats.com
+
+**Password**: password
+
+If there is no record for admin, you might want to run **_rails :db.seed_** to setup initial admin details.
+
+------Things you may want to cover:
 
 * Ruby version
 
