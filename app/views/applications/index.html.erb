@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Applications</h1>
+
+<table class = "table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Current company</th>
+      <th>Linkedin url</th>
+      <th>Portfolio url</th>
+      <th>Add info</th>
+      <th>Gender</th>
+      <th>Race</th>
+      <th>Veteran</th>
+      <th>Disability</th>
+      <th>Resume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applications.each do |application| %>
+      <tr>
+        <td><%= application.user_id %></td>
+        <td><%= application.current_company %></td>
+        <td><%= application.linkedin_url %></td>
+        <td><%= application.portfolio_url %></td>
+        <td><%= application.add_info %></td>
+        <td><%= application.gender %></td>
+        <td><%= application.race %></td>
+        <td><%= application.veteran %></td>
+        <td><%= application.disability %></td>
+        <td><%= link_to "Download Resume", application.attachment_url %></td>
+        <td><%= link_to 'Show', application %></td>
+        <td><%= link_to 'Edit', edit_application_path(application) %></td>
+        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Application', new_application_path %>
