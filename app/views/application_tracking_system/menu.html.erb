@@ -11,10 +11,12 @@
     <br/><br/>
     <%= link_to "View all users", '#'  , class: "btn btn-md btn-primary"%>
     <br/><br/>
+
+  <% end %>
+  <% if current_user.is_recruiter? %>
     <%= link_to "View all applicants", applications_url  , class: "btn btn-md btn-primary"%>
     <br/><br/>
-  <% end %>
-
+  <%end%>
   <%= link_to "View all posted Jobs", jobs_url  , class: "btn btn-md btn-primary"%>
   <br/><br/>
   <%= link_to "View all Companies", companies_path  , class: "btn btn-md btn-primary"%>
