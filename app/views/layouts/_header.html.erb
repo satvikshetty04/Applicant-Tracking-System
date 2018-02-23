@@ -1,17 +1,21 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "Application Tracking System", '#', id: "logo" %>
+    <b class="headertext"><%= link_to "Application Tracking System", application_tracking_system_home_url , id: "logo" %></b>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   application_tracking_system_home_path %></li>
-        <li><%= link_to "Help",   application_tracking_system_help_path %></li>
+        <%= link_to "Home",   application_tracking_system_home_path %>
+        <b class="headertext">|</b>
+        <%= link_to "Help",   application_tracking_system_help_path %>
 
         <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <br/>
+          <b class="headertext">Logged in as <strong><%= current_user.fname %></strong></b>
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+          <b class="headertext">|</b>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         <% else %>
-          <li><%= link_to "Log in", new_user_session_path %></li>
+          <b class="headertext">|</b>
+          <%= link_to "Log in", new_user_session_path %><
         <% end %>
       </ul>
     </nav>
