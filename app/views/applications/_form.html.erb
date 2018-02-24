@@ -57,10 +57,10 @@
   </div>
 
   <div class="field">
-    <%= form.label :resume %>
-    <%= form.text_field :resume, id: :application_resume %>
+    <%= form.label "Upload Resume [PDF / DOC / DOCX]" %>
+    <%= form.file_field :resume, id: :application_resume %>
   </div>
-
+  <br/>
   <div class="actions">
     <%= form.submit %>
   </div>
