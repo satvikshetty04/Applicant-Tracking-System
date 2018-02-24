@@ -32,8 +32,8 @@
 
   </div>
 
-  <%= f.label :companies_id %>
-  <%= f.select :companies_id, options_for_select(Company.all.collect{ |c| [c.name,c.id] }) %>
+  <%= f.label :company_id %>
+  <%= f.select :company_id, options_for_select(Company.all.collect{ |c| [c.name,c.id] }) %>
   <%= link_to("Add Company", new_company_path)%>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
