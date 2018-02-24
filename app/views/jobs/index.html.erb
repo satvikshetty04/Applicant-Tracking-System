@@ -17,14 +17,16 @@
   <tbody>
     <% @jobs.each do |job| %>
       <tr>
-        <td><%= job.company_id %></td>
+        <td><%= Company.select(:name).where(id: job.company_id) %></td>
         <td><%= job.job_description %></td>
         <td><%= job.employment_type %></td>
         <td><%= job.responsibilities %></td>
         <td><%= job.requirements %></td>
         <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.is_admin %>
+          <td><%= link_to 'Edit', edit_job_path(job) %></td>
+          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
