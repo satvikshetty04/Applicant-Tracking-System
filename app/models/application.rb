@@ -1,6 +1,6 @@
 class Application < ApplicationRecord
   mount_uploader :resume, ResumeUploader
-  belongs_to :user
+  belongs_to :user, :job
   validates :linkedin_url, allow_blank: true, format: {
       :with => /\A((http|https):\/\/)?(www\.)?(linkedin\.com\/in\/)+[a-z0-9\-]+\z/,
       :message => "Valid LinkedIn URL required."}
