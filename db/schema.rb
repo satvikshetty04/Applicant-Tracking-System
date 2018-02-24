@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20180224013850) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_id"
+    t.integer "job_id"
     t.index ["jobs_id"], name: "index_applications_on_jobs_id"
   end
 
