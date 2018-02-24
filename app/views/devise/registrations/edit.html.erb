@@ -22,6 +22,19 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+  <div class="checkbox">
+
+    <%= f.check_box :is_recruiter%>
+    <%= f.label :role,'Recruiter?'%><br/>
+
+    <%= f.check_box :is_applicant%>
+    <%= f.label :role, 'Applicant?'%><br/><br/>
+
+  </div>
+
+  <%= f.label :companies_id %>
+  <%= f.select :companies_id, options_for_select(Company.all.collect{ |c| [c.name,c.id] }) %>
+  <%= link_to("Add Company", new_company_path)%>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

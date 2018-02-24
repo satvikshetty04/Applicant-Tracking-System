@@ -13,7 +13,7 @@
     <br/><br/>
 
   <% end %>
-  <% if current_user.is_recruiter? %>
+  <% if current_user.is_recruiter? || current_user.is_admin?%>
     <%= link_to "View all applicants", applications_url  , class: "btn btn-md btn-primary"%>
     <br/><br/>
 
@@ -22,7 +22,7 @@
     <%= link_to "View all Companies", companies_path  , class: "btn btn-md btn-primary"%>
     <br/><br/>
   <%end%>
-  <% if current_user.is_applicant? %>
+  <% if current_user.is_applicant? || current_user.is_admin?%>
     <%= link_to "View jobs I have applied to", jobs_url  , class: "btn btn-md btn-primary"%>
   <% end %>
 </div>
