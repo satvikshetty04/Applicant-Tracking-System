@@ -24,8 +24,10 @@
       <td><%= user.phone_no %></td>
       <td><%= user.is_applicant %></td>
       <td><%= user.is_recruiter %></td>
-      <td><%= link_to 'Delete', users_path, method: :remove, data: { confirm: 'Are you sure?' } %></td>
-
+      <% if not user.is_admin %>
+        <td><%= link_to 'Delete', {controller: 'users', action: 'destroy' , id: user.id},
+                        data: { confirm: 'Are you sure?', method: :delete, remote: true } %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>
