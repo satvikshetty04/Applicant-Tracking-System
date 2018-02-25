@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    puts "Viewing all users"
     @users = User.all
   end
   def show
@@ -17,6 +18,15 @@ class UsersController < ApplicationController
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def remove
+    @user = User.find(user.id)
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
+      format.json { head :no_content }
     end
   end
 

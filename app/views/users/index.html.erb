@@ -11,7 +11,7 @@
     <th>Phone Number</th>
     <th>Is Applicant</th>
     <th>Is Recruiter</th>
-    <th colspan="3"></th>
+    <th>Options</th>
   </tr>
   </thead>
 
@@ -24,6 +24,7 @@
       <td><%= user.phone_no %></td>
       <td><%= user.is_applicant %></td>
       <td><%= user.is_recruiter %></td>
+      <td><%= link_to 'Delete', users_path, method: :remove, data: { confirm: 'Are you sure?' } %></td>
 
     </tr>
   <% end %>

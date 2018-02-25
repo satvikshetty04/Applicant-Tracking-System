@@ -22,6 +22,9 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+
+  <% if current_user.is_recruiter %>
+  <%= f.label 'Select your role' %><br />
   <div class="checkbox">
 
     <%= f.check_box :is_recruiter%>
@@ -32,9 +35,10 @@
 
   </div>
 
-  <%= f.label :company_id %>
-  <%= f.select :company_id, options_for_select(Company.all.collect{ |c| [c.name,c.id] }) %>
-  <%= link_to("Add Company", new_company_path)%>
+    <%= f.label :company_id %>
+    <%= f.select :company_id, options_for_select(Company.all.collect{ |c| [c.name,c.id] }) %><br/>
+    <%= link_to("Add Company", new_company_path)%><br/><br/>
+  <% end %>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -64,8 +68,9 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<% if !current_user.is_admin %>
+  <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<% end%>
 <%= link_to "Back", :back %>

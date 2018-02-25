@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224013850) do
+ActiveRecord::Schema.define(version: 20180224183604) do
 
   create_table "applications", force: :cascade do |t|
     t.integer "user_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180224013850) do
     t.datetime "updated_at", null: false
     t.integer "jobs_id"
     t.integer "job_id"
+    t.string "application_status", default: "Submitted"
     t.index ["jobs_id"], name: "index_applications_on_jobs_id"
   end
 
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20180224013850) do
     t.text "requirements"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "job_status", default: "Open"
   end
 
   create_table "users", force: :cascade do |t|

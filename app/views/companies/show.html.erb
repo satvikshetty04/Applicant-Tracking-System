@@ -40,10 +40,7 @@
   <%= @company.synopsis %>
 </p>
 
-<% if current_user.is_applicant %>
-  <%= link_to 'Apply', new_application_path %> |
-<% end %>
-<% if current_user.is_admin %>
+<% if current_user.is_admin || (current_user.is_recruiter && current_user.company_id == company.id) %>
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <% end %>
 <%= link_to 'Back', companies_path %>

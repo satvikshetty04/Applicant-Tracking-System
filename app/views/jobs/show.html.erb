@@ -25,5 +25,15 @@
   <%= @job.requirements %>
 </p>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
+<p>
+  <strong>Job Status:</strong>
+  <%= @job.job_status %>
+</p>
+
+<% if current_user.is_applicant %>
+  <%= link_to 'Apply!', new_application_path %> |
+<% end %>
+<% if current_user.is_recruiter %>
+  <%= link_to 'Edit', edit_job_path(@job) %> |
+<% end %>
 <%= link_to 'Back', jobs_path %>
