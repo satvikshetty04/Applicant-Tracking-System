@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
   # POST /applications.json
   def create
     @application = Application.new(application_params)
-
+    @application.user_id= current_user.id
     respond_to do |format|
       if @application.save
         format.html { redirect_to @application, notice: 'Application was successfully created.' }
@@ -69,6 +69,6 @@ class ApplicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.require(:application).permit(:user_id, :current_company, :linkedin_url, :portfolio_url, :add_info, :gender, :race, :veteran, :disability, :resume)
+      params.require(:application).permit(:current_company, :linkedin_url, :portfolio_url, :add_info, :gender, :race, :veteran, :disability, :resume)
     end
 end

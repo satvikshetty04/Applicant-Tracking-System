@@ -13,7 +13,9 @@
 
   <div class="field">
     <%= form.label :company_id %>
-    <%= form.number_field :company_id, id: :job_company_id %>
+    <%= form.select :company_id, options_for_select(Company.select(:name,:id).where(id: current_user.company_id).collect{|c| [c.name,c.id]}) %><br/>
+
+
   </div>
 
   <div class="field">
