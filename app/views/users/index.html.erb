@@ -11,6 +11,7 @@
     <th>Phone Number</th>
     <th>Is Applicant</th>
     <th>Is Recruiter</th>
+    <th>Company</th>
     <th>Options</th>
   </tr>
   </thead>
@@ -24,6 +25,7 @@
       <td><%= user.phone_no %></td>
       <td><%= user.is_applicant %></td>
       <td><%= user.is_recruiter %></td>
+      <td><%= Company.select(:name).where(id: user.company_id).map(&:name).first %></td>
       <% if not user.is_admin %>
         <td><%= link_to 'Delete', {controller: 'users', action: 'destroy' , id: user.id},
                         data: { confirm: 'Are you sure?', method: :delete, remote: true } %></td>
