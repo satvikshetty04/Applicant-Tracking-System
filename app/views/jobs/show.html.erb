@@ -31,7 +31,7 @@
 </p>
 
 <% if current_user.is_applicant %>
-  <%= link_to 'Apply!', new_application_path %> |
+  <%= link_to 'Apply!', new_application_path(:job_id => job.id) %> |
 <% end %>
 <% if current_user.is_recruiter %>
   <%= link_to 'Edit', edit_job_path(@job) %> |

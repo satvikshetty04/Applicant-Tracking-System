@@ -63,13 +63,14 @@ class ApplicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
     def set_application
       @application = Application.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.require(:application).permit(:job_id, :id, :current_company, :linkedin_url, :portfolio_url, :add_info, :gender, :race, :veteran, :disability, :resume)
+      params.require(:application).permit(:job_id, :id, :current_company, :linkedin_url, :portfolio_url, :add_info,
+                                          :gender, :race, :veteran, :disability, :resume)
     end
 end

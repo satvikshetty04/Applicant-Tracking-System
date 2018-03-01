@@ -1,5 +1,9 @@
 # README
 
+**Name:** Application Tracking System
+
+**Members:** Satvik Shetty, Angad Wadhwa [3rd member dropped the course]
+
 Heroku Deployment URL: https://mysterious-ravine-96973.herokuapp.com/
 
 Admin details:
