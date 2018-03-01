@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :job_id, :value => params['job_id'] %>
 
    <div class="field">
     <%= form.label :current_company %>
@@ -33,22 +34,23 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.text_field :gender, id: :application_gender %>
+    <%= form.select :gender, options_for_select(['Male', 'Female', 'Transgender', 'Do not wish to disclose']) %>
   </div>
 
   <div class="field">
     <%= form.label :race %>
-    <%= form.text_field :race, id: :application_race %>
+    <%= form.select :race, options_for_select(['American', 'African', 'Hispanic/Latino', 'Asian', 'Native American',
+                                                   'Do not wish to disclose']) %>
   </div>
 
   <div class="field">
     <%= form.label :veteran %>
-    <%= form.text_field :veteran, id: :application_veteran %>
+    <%= form.select :veteran, options_for_select(['Yes', 'No', 'Do not wish to disclose']) %>
   </div>
 
   <div class="field">
     <%= form.label :disability %>
-    <%= form.text_field :disability, id: :application_disability %>
+    <%= form.select :disability, options_for_select(['Yes', 'No', 'Do not wish to disclose']) %>
   </div>
 
   <div class="field">

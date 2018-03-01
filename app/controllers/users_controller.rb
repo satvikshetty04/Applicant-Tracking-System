@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def index
-    puts "Viewing all users"
     @users = User.all
   end
   def show

@@ -25,21 +25,26 @@
       <td><%= job.requirements %></td>
       <td><%= job.job_status %></td>
       <td><%= link_to 'Show', job %>
-        <% if current_user.is_admin || (current_user.is_recruiter && current_user.company_id == job.company_id)%>
+        <% if current_user.is_admin || (current_user.is_recruiter && current_user.id == job.recruiter_id)%>
           | <%= link_to 'Edit', edit_job_path(job) %>
         <% end %>
-        <% if current_user.is_admin %>
+        <% if current_user.is_admin || (current_user.is_recruiter && current_user.company_id == job.company_id) %>
           | <%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
-        <% if current_user.is_recruiter && current_user.company_id == job.company_id %>
-          | <%= link_to 'Close Job', job, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %></td>
-  </tr>
+        <% if current_user.is_applicant && current_user.company_id != job.company_id && job.job_status != "Closed"%>
+          | <%= link_to 'Apply', new_application_path(:job_id => job.id)%>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
 <% if current_user.is_recruiter? %>
-  <%= link_to 'New Job', new_job_path %><br><br>
+  <% if current_user.company_id==nil %>
+    <i style="color: #cc0000">Please add a company by <%= link_to "editing your profile", edit_user_registration_path %> to post jobs.</i>
+  <%else%>
+    <%= link_to 'New Job', new_job_path %><br><br>
+  <%end%>
 <%end%>

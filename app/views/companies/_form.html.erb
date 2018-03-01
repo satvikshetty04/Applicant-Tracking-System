@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :size %>
-    <%= form.text_field :size, id: :company_size %>
+    <%= form.select :size, options_for_select(['1-50', '51-100', '101-1000', '1000+'], '1-50') %>
   </div>
 
   <div class="field">

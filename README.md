@@ -8,6 +8,16 @@ Admin details:
 
 **Password**: password
 
-If there is no record for admin, you might want to run **_rails :db.seed_** to setup initial admin details.
+Recruiter details _[Unless deleted by someone]_:
 
-Being updated: Test cases. Please be patient.
+**Email**: recruiter1@ats.com
+
+**Password**: 123qwe
+
+Applicant details _[Unless deleted by someone]_:
+
+**Email**: applicant1@ats.com
+
+**Password**: 123qwe
+
+Being updated: Test cases & Job Search page. Please be patient.

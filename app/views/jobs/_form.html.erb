@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :recruiter_id, :value => current_user.id %>
 
   <div class="field">
     <%= form.label :company_id %>
@@ -36,6 +37,11 @@
   <div class="field">
     <%= form.label :requirements %>
     <%= form.text_area :requirements, id: :job_requirements %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_status %>
+    <%= form.select :job_status, options_for_select(["Open", "Closed"], "Open") %>
   </div>
 
   <div class="actions">
