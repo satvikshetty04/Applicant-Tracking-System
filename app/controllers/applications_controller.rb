@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /applications
   # GET /applications.json
@@ -14,11 +15,21 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/new
   def new
+    if user_signed_in? && (not current_user.is_applicant)
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
     @application = Application.new
   end
 
   # GET /applications/1/edit
   def edit
+    if user_signed_in? && (not current_user.is_applicant)
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
   end
 
   # POST /applications

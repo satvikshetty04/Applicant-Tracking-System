@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /jobs
   # GET /jobs.json
@@ -14,11 +15,21 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
+    if user_signed_in? && current_user.is_applicant
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
     @job = Job.new
   end
 
   # GET /jobs/1/edit
   def edit
+    if user_signed_in? && current_user.is_applicant
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
   end
 
   # POST /jobs

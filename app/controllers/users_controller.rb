@@ -1,10 +1,22 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
+    if user_signed_in? && (not current_user.is_admin)
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
     @users = User.all
   end
   def show
   end
   def new
+    if user_signed_in? && (not current_user.is_admin)
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
     @user = User.new
   end
   def create

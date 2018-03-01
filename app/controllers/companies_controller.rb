@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /companies
   # GET /companies.json
@@ -14,11 +15,21 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
+    if user_signed_in? && current_user.is_applicant
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
     @company = Company.new
   end
 
   # GET /companies/1/edit
   def edit
+    if user_signed_in? && current_user.is_applicant
+      respond_to do |format|
+        format.html { redirect_to application_tracking_system_menu_url }
+      end
+    end
   end
 
   # POST /companies
