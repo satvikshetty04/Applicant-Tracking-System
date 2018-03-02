@@ -28,8 +28,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-# gem 'bcrypt'
+gem 'bcrypt'
 gem 'carrierwave'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-oauth2','~> 1.3.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -56,4 +59,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'bcrypt', platforms: [:ruby, :x64_mingw, :mingw]
-gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+#gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'

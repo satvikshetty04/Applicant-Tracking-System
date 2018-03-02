@@ -28,6 +28,11 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+
+  require 'omniauth-google-oauth2'
+  require 'omniauth-google-oauth2'
+  config.omniauth :google_oauth2, "167344638074-ocg0aos8albdlof5sr8s5ci0v2a143rb.apps.googleusercontent.com", "H-LHzpC4jiABrSFPxZkUZKQ4", {  }
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for

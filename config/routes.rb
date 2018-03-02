@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :applications
-  devise_for :users, :path => 'u', :controllers => { registrations: 'registrations' }
+  devise_for :users, :path => 'u', :controllers => { registrations: 'registrations' , omniauth_callbacks: "omniauth_callbacks"}
   resources :users, :only => [:index, :new, :create, :destroy]
   get 'application_tracking_system/home'
   get 'application_tracking_system/help'
