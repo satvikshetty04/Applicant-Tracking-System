@@ -38,7 +38,8 @@
 
   <div class="field">
     <%= form.label :industry %>
-    <%= form.text_field :industry, id: :company_industry %>
+    <%= form.select :industry, options_for_select(['Technology', 'Electrical', 'Management', 'Chemical', 'Agriculture',
+                                                   'Non-Profit','Mechanical', 'Entertainment'], 'Technology')%>
   </div>
 
   <div class="field">

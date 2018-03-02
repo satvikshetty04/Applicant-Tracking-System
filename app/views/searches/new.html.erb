@@ -1,0 +1,31 @@
+<h2>Job Search</h2>
+
+<%= form_for(@search, html: {method: :post}) do |f| %>
+
+  <div class="field">
+    <%= f.label 'Company Name' %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Headquarters' %><br />
+    <%= f.text_field :headquarters %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Company Size' %><br />
+    <%= f.select :size, options_for_select(['1-50', '51-100', '101-1000', '1000+']), :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :industry %><br />
+    <%= f.select :industry, options_for_select(['Technology', 'Electrical', 'Management', 'Chemical', 'Agriculture',
+                                                   'Non-Profit','Mechanical', 'Entertainment']), :include_blank => true%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Search" %>
+  </div>
+<% end %>
+
+

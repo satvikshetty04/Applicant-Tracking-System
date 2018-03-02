@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Job Search Results</h1>
+
+<% if @search.search_companies.empty? %>
+  <p>No Jobs Found</p>
+<% else %>
+  <table class = "table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Company</th>
+      <th>Job description</th>
+      <th>Employment type</th>
+      <th>Responsibilities</th>
+      <th>Requirements</th>
+      <th>Job Status</th>
+      <th>Options</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search.search_companies.each do |c| %>
+      <% c.jobs.map do |job| %>
+        <tr>
+          <td><%= Company.find(job.company_id).name %></td>
+          <td><%= job.job_description %></td>
+          <td><%= job.employment_type %></td>
+          <td><%= job.responsibilities %></td>
+          <td><%= job.requirements %></td>
+          <td><%= job.job_status %></td>
+          <td><%= link_to 'Show', job %>
+            <% if current_user.is_admin || (current_user.is_recruiter && current_user.id == job.recruiter_id)%>
+              | <%= link_to 'Edit', edit_job_path(job) %>
+            <% end %>
+            <% if current_user.is_admin || (current_user.is_recruiter && current_user.company_id == job.company_id) %>
+              | <%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+            <% if current_user.is_applicant && current_user.company_id != job.company_id && job.job_status != "Closed"%>
+              | <%= link_to 'Apply', new_application_path(:job_id => job.id)%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+<%end%>
+
+<br>

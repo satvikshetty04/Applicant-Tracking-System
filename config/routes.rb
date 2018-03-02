@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :application_tracking_system
   resources :jobs
   resources :companies
+  resources :searches, only: [:new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'application_tracking_system#home'
 end
