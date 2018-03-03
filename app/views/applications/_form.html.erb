@@ -4,15 +4,21 @@
       <h2><%= pluralize(application.errors.count, "error") %> prohibited this application from being saved:</h2>
 
       <ul>
-      <% application.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% application.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :job_id, :value => params['job_id'] %>
+  <% if params['job_id'].present? %>
+    <% jobid = params['job_id'] %>
+    <%= form.hidden_field :job_id, :value => params['job_id'] %>
+  <% else %>
+    <% jobid = @application.job_id %>
+    <%= form.hidden_field :job_id, :value => @application.job_id %>
+  <% end %>
 
-   <div class="field">
+  <div class="field">
     <%= form.label :current_company %>
     <%= form.text_field :current_company, id: :application_current_company %>
   </div>
@@ -34,29 +40,36 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.select :gender, options_for_select(['Male', 'Female', 'Transgender', 'Do not wish to disclose']) %>
+    <%= form.select :gender, options_for_select(['Male', 'Female', 'Transgender', 'Do not wish to disclose'],
+                                                @application.gender) %>
   </div>
 
   <div class="field">
     <%= form.label :race %>
     <%= form.select :race, options_for_select(['American', 'African', 'Hispanic/Latino', 'Asian', 'Native American',
-                                                   'Do not wish to disclose']) %>
+                                               'Do not wish to disclose'], @application.race) %>
   </div>
 
   <div class="field">
     <%= form.label :veteran %>
-    <%= form.select :veteran, options_for_select(['Yes', 'No', 'Do not wish to disclose']) %>
+    <%= form.select :veteran, options_for_select(['Yes', 'No', 'Do not wish to disclose'], @application.veteran) %>
   </div>
 
   <div class="field">
     <%= form.label :disability %>
-    <%= form.select :disability, options_for_select(['Yes', 'No', 'Do not wish to disclose']) %>
+    <%= form.select :disability, options_for_select(['Yes', 'No', 'Do not wish to disclose'], @application.disability ) %>
   </div>
 
   <div class="field">
     <%= form.label "Upload Resume [PDF / DOC / DOCX]" %>
     <%= form.file_field :resume, id: :application_resume %>
   </div>
+
+  <% if current_user.is_recruiter && current_user.id == Job.find(jobid).recruiter_id %>
+    <%= form.label :application_status %>
+    <%= form.select :application_status, options_for_select(['Submitted', 'In review', 'Not selected'],
+                                                            @application.application_status) %>
+  <% end %>
   <br/>
   <div class="actions">
     <%= form.submit %>

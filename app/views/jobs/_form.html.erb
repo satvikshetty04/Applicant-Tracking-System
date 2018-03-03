@@ -26,7 +26,7 @@
 
   <div class="field">
     <%= form.label :employment_type %>
-    <%= form.text_field :employment_type, id: :job_employment_type %>
+    <%= form.select :employment_type, options_for_select(['Full-Time', 'Part-Time', 'Internship', 'Contractor']) %>
   </div>
 
   <div class="field">

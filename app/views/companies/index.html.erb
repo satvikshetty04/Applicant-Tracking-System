@@ -11,8 +11,6 @@
     <th>Size</th>
     <th>Founded</th>
     <th>Industry</th>
-    <th>Revenue</th>
-    <th>Synopsis</th>
     <th>Options</th>
   </tr>
   </thead>
@@ -26,8 +24,6 @@
       <td><%= company.size %></td>
       <td><%= company.founded %></td>
       <td><%= company.industry %></td>
-      <td><%= company.revenue %></td>
-      <td><%= company.synopsis %></td>
       <td><%= link_to 'Show', company %>
       <% if current_user.is_admin || (current_user.is_recruiter && current_user.company_id == company.id)%>
         | <%= link_to 'Edit', edit_company_path(company) %>

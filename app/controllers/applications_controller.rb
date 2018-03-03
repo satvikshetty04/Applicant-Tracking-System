@@ -25,7 +25,8 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
-    if user_signed_in? && (not current_user.is_applicant)
+    if user_signed_in? && (current_user.id != Application.find(params[:id]).user_id &&
+        (not current_user.is_admin) && (current_user.id != Job.find(Application.find(params[:id]).job_id).recruiter_id))
       respond_to do |format|
         format.html { redirect_to application_tracking_system_menu_url }
       end
@@ -82,6 +83,6 @@ class ApplicationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
       params.require(:application).permit(:job_id, :id, :current_company, :linkedin_url, :portfolio_url, :add_info,
-                                          :gender, :race, :veteran, :disability, :resume)
+                                          :gender, :race, :veteran, :disability, :resume, :application_status)
     end
 end

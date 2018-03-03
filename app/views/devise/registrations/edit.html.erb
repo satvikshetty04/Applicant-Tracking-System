@@ -23,7 +23,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <% if current_user.is_recruiter %>
+
   <%= f.label 'Select your role' %><br />
   <div class="checkbox">
 
@@ -34,7 +34,7 @@
     <%= f.label :role, 'Applicant?'%><br/><br/>
 
   </div>
-
+  <% if current_user.is_recruiter %>
     <%= f.label :company_id %>
     <%= f.select :company_id, options_for_select(Company.all.collect{ |c| [c.name,c.id] }) %><br/>
     <%= link_to("Add Company", new_company_path)%><br/><br/>

@@ -2,26 +2,32 @@
 
 <h1>Applications</h1>
 
-<table class = "table table-bordered table-striped">
-  <thead>
+<% if current_user.is_recruiter && (not current_user.is_applicant) && current_user.company_id.nil? %>
+  <i style="color: #cc0000">Please add a company by <%= link_to "editing your profile", edit_user_registration_path %> to post jobs.</i>
+<% else %>
+  <table class = "table table-bordered table-striped">
+    <thead>
     <tr>
       <th>Job ID</th>
       <th>User</th>
       <th>Current company</th>
-      <th>Linkedin url</th>
-      <th>Portfolio url</th>
-      <th>Add info</th>
-      <th>Gender</th>
-      <th>Race</th>
-      <th>Veteran</th>
-      <th>Disability</th>
+      <th>Linkedin</th>
+      <th>Portfolio</th>
       <th>Resume</th>
       <th>Application Status</th>
-      <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
+    <% if current_user.is_admin %>
+      <% @applications = Application.all %>
+    <% elsif current_user.is_recruiter && (not current_user.is_applicant) %>
+      <% @applications =  Application.where(job_id: Job.where(company_id: current_user.company_id))%>
+    <% elsif current_user.is_recruiter && current_user.is_applicant && (not current_user.company_id.nil?)%>
+      <% @applications =  Application.where('job_id IN (?) OR user_id=?',Job.where(company_id: current_user.company_id).ids,current_user.id)%>
+    <% else %>
+      <% @applications = Application.where(user_id: current_user.id) %>
+    <% end %>
     <% @applications.each do |application| %>
       <tr>
         <td><%= application.job_id %></td>
@@ -29,20 +35,22 @@
         <td><%= application.current_company %></td>
         <td><%= application.linkedin_url %></td>
         <td><%= application.portfolio_url %></td>
-        <td><%= application.add_info %></td>
-        <td><%= application.gender %></td>
-        <td><%= application.race %></td>
-        <td><%= application.veteran %></td>
-        <td><%= application.disability %></td>
         <td><%= link_to "Download Resume", application.resume_url %></td>
         <td><%= application.application_status %></td>
-        <td><%= link_to 'Show', application %></td>
-        <td><%= link_to 'Edit', edit_application_path(application) %></td>
-        <td><%= link_to 'Delete', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', application %>
+          <% if current_user.id==application.user_id || current_user.is_admin %>
+            | <%= link_to 'Edit', edit_application_path(application) %>
+            | <%= link_to 'Delete', application, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+          <% if current_user.is_admin ||
+              (current_user.is_recruiter && Job.find(application.job_id).recruiter_id==current_user.id) %>
+            | <%= link_to 'Change Status', edit_application_path(application) %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+<% end %>
 <br>
 
