@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20180302195652) do
     t.string "resume"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "jobs_id"
     t.integer "job_id"
     t.string "application_status", default: "Submitted"
+    t.index ["jobs_id"], name: "index_applications_on_jobs_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -80,9 +82,11 @@ ActiveRecord::Schema.define(version: 20180302195652) do
     t.string "lname"
     t.boolean "is_admin"
     t.string "phone_no"
+    t.integer "companies_id"
     t.integer "company_id"
     t.string "provider"
     t.string "uid"
+    t.index ["companies_id"], name: "index_users_on_companies_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
